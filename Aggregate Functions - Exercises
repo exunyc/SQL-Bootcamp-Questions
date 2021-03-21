@@ -17,8 +17,8 @@ SELECT AVG(salary) AS "Average Salary" FROM "public"."salaries";
 -- Table: employees
 
 
-SELECT MIN(birth_date) AS "DOB of Youngest Employee" FROM "public"."employees";
--- Result: 1952-02-01 --
+SELECT MAX(birth_date) AS "DOB of Youngest Employee" FROM "public"."employees";
+-- Result: 1965-02-01 --
 
 
 -- BEFORE YOU START
@@ -45,8 +45,8 @@ SELECT COUNT(id) AS "# of Towns in France" FROM "public"."towns";
 -- Question 1: How many official languages are there?
 -- Table: countrylanguage
 
-SELECT COUNT(language) AS "# of Official Languages" FROM "public"."countrylanguage";
--- Result: 984 "
+SELECT COUNT(language) AS "# of Official Languages" FROM "public"."countrylanguage" WHERE isofficial=true;
+-- Result: 238 "
 
 
 -- Question 2: What is the average life expectancy in the world?
