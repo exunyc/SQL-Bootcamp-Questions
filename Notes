@@ -5,3 +5,4 @@ NULL = NULL (Any operations performed will result in NULL)
 
 IS Operator 
 Filter values that are NULL, NOT NULL, True, False
+-- SELECT * FROM <table> WHERE <field> IS [NOT] NULL;
