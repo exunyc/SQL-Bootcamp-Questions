@@ -3,7 +3,7 @@ Declarative (SQL) - Find result VS. Imperative (Java) - Steps to find result
 CRUD
 Create, Rename, Update, Delete
 
-NULL = NULL (Any operations performed will result in NULL)
+NULL != NULL (Any operations performed will result in NULL)
 
 IS Operator 
 Filter values that are NULL, NOT NULL, True, False
