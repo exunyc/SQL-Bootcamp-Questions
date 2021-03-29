@@ -8,3 +8,30 @@ NULL, Nothing equals NULL (Any operations performed will result in NULL)
 IS Operator 
 Filter values that are NULL, NOT NULL, True, False
 -- SELECT * FROM <table> WHERE <field> IS [NOT] NULL;
+
+BETWEEN 
+
+IN
+Check if a value matches any value in a list of values
+
+LIKE
+Filter based on criteria, build patters to match, Postgres - ONLY Text comparison -> must cast
+% any number of characters, _ 1 character
+-- Examples: LIKE '%2' - fields that end with 2 
+             LIKE '%2%' - fields that have 2 anywhere in value
+             LIKE '_00%' - fields that have 0 as second and third character and anything after
+             LIKE '%200%' - fields that have 200 anywhere in value
+             LIKE '2_%_%' - values that start with 2 and are atleast 3 characters in length
+             LIEK '2___3' - 5 digit values that start with 2 and end with 3
+     
+ILIKE
+Case insenstive matching
+             
+CAST
+    CAST(salary as text);
+    salary::text;
+    
+TIME
+ALWAYS use UTC as a standard
+-- SET TIME ZONE 'UTC';
+-- ISO-8601
