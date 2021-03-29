@@ -34,4 +34,4 @@ CAST
 TIME
 ALWAYS use UTC as a standard
 -- SET TIME ZONE 'UTC';
--- ISO-8601
+-- ISO-8601 -> YYYY--MM--DDTHH:MM:SS
