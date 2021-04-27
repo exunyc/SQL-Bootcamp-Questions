@@ -39,5 +39,9 @@ ALWAYS use UTC as a standard
 DISTINCT
 Evaluating multiple columns based on combination of columns
   SELECT DISTINCT <col1>, <col2>
-FROM
+  FROM
   <table>;
+  
+ORDER BY
+Sort data either ascending or descending by column
+  SELECT * FROM <table> ORDER BY <column> [ASC/DESC];
