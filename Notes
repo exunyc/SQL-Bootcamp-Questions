@@ -45,3 +45,25 @@ Evaluating multiple columns based on combination of columns
 ORDER BY
 Sort data either ascending or descending by column
   SELECT * FROM <table> ORDER BY <column> [ASC/DESC];
+
+--------------------------------------------------------------------------------------------------------
+
+Multi Table SELECT
+Use WHERE to link to the two tables
+-- Example: 
+  SELECT a.emp_no, CONCAT(a.first_name, a.last_name) AS "name",
+         b.salary
+  FROM employees as a, salaries as b
+  WHERE a.emp_no = b.emp_no;
+  
+JOINS
+Take a column from one table that can map to a column of another table (link PRIMARY key to FOREIGN key)
+
+INNER JOIN
+If you have columns that link table a to table b, you can use an inner join (both tables have employee number)
+-- Example: 
+  SELECT a.emp_no, CONCAT(a.first_name, a.last_name) AS "name",
+         b.salary
+  FROM employees as a
+  INNJER JOIN salaries as b ON b.emp_no = a.emp_no  -- Join the column salaries from table b to table a
+  ORDER BY a.emp_no ASC;
