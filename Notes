@@ -65,5 +65,23 @@ If you have columns that link table a to table b, you can use an inner join (bot
   SELECT a.emp_no, CONCAT(a.first_name, a.last_name) AS "name",
          b.salary
   FROM employees as a
-  INNJER JOIN salaries as b ON b.emp_no = a.emp_no  -- Join the column salaries from table b to table a
+  INNER JOIN salaries as b ON b.emp_no = a.emp_no  -- Join the column salaries from table b to table a
   ORDER BY a.emp_no ASC;
+--Example: (3 Table Inner Join)
+  SELECT a.emp_no, CONCAT(a.first_name, a.last_name) AS "name",
+         b.salary,
+         c.title,
+         c.from_date AS "promoted on"
+  FROM employees AS a
+  INNER JOIN salaries as b on a.emp_no = b.emp_no  -- ON acts like WHERE
+  INNER JOIN titles AS c ON c.emp_no = a.emp_no 
+  AND (b.from_date = c.from_date OR (c.from_date = (b.from_date + interval '2 days'))
+  ORDER BY a.emp_no;
+  
+  SELF JOIN
+  When a table has a foreign key referencing its primary key
+  --Example: 
+    SELECT a.id, a.name as "employee", b.name as "supervisor name"
+    FROM employee as a, employee as b
+    WHERE a.supervisorId = b.id;
+  
