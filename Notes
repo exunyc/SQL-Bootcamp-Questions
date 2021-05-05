@@ -78,10 +78,12 @@ If you have columns that link table a to table b, you can use an inner join (bot
   AND (b.from_date = c.from_date OR (c.from_date = (b.from_date + interval '2 days'))
   ORDER BY a.emp_no;
   
-  SELF JOIN
-  When a table has a foreign key referencing its primary key
+SELF JOIN
+When a table has a foreign key referencing its primary key
   --Example: 
     SELECT a.id, a.name as "employee", b.name as "supervisor name"
     FROM employee as a, employee as b
     WHERE a.supervisorId = b.id;
   
+FULL OUT JOIN
+Returns results from both tables whether they match or not
