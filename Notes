@@ -87,3 +87,7 @@ When a table has a foreign key referencing its primary key
   
 FULL OUT JOIN
 Returns results from both tables whether they match or not
+
+USING 
+Simplifies the matching of primary to foreign relationships. Replaces ON
+-- More easily used in simple joins where there is less ambiguity of JOINS
