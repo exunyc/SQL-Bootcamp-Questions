@@ -1,1 +1,8 @@
-
+GROUP BY
+Summarizing or aggregating data by groups. Split-Apply-Combine
+To get in-depth information by group; almost exclusively used with AGGREGATE functions
+-- Example: How many employees work in each department
+    SELECT dept_no, COUNT(emp_no),
+    FROM dept_no
+    GROUP BY dept_no;
+*Functions must apply to all columns that are not within GROUP BY*
