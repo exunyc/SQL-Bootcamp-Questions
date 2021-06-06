@@ -6,3 +6,6 @@ To get in-depth information by group; almost exclusively used with AGGREGATE fun
     FROM dept_no
     GROUP BY dept_no;
 *Functions must apply to all columns that are not within GROUP BY*
+
+HAVING
+Filters on GROUP
