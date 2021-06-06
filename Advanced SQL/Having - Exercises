@@ -1,0 +1,51 @@
+/*
+*  Show me all the employees, hired after 1991, that have had more than 2 titles
+*  Database: Employees
+*/
+
+SELECT 
+    e.emp_no AS "Employee #", CONCAT(e.first_name, ' ', e.last_name) AS "Name",
+    e.hire_date AS "Hire Date",
+    COUNT(t.title) AS "# of titles"
+ FROM public.employees AS e 
+ INNER JOIN public.titles as t ON t.emp_no = e.emp_no 
+ WHERE EXTRACT(YEAR FROM e.hire_date) > 1991
+ GROUP BY e.emp_no, e.hire_date
+ HAVING COUNT(t.title) > 2;
+
+-- 52 records
+
+/*
+*  Show me all the employees that have had more than 15 salary changes that work in the department development
+*  Database: Employees
+*/
+
+SELECT 
+    e.emp_no AS "Employee #", CONCAT(e.first_name, ' ', e.last_name) AS "Name",
+    d.dept_name AS "Department",
+    COUNT(s.salary) AS "# of Salary Changes"
+ FROM public.employees AS e 
+ INNER JOIN public.dept_emp as de ON de.emp_no = e.emp_no
+ INNER JOIN public.salaries AS s on s.emp_no = e.emp_no
+ INNER JOIN public.departments AS d ON d.dept_no = de.dept_no 
+ WHERE d.dept_name ILIKE 'development'
+ GROUP BY e.emp_no, d.dept_name
+ HAVING COUNT(s.salary) > 15;
+ 
+ -- 11493 Records
+
+
+/*
+*  Show me all the employees that have worked for multiple departments
+*  Database: Employees
+*/
+
+SELECT 
+    e.emp_no AS "Employee #", CONCAT(e.first_name, ' ', e.last_name) AS "Name",
+    COUNT(de.dept_no) AS "# of Departments"
+ FROM public.employees AS e 
+ INNER JOIN public.dept_emp as de ON de.emp_no = e.emp_no
+ GROUP BY e.emp_no
+ HAVING COUNT(de.dept_no) > 1;
+ 
+ - 31579 records
