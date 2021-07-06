@@ -1,0 +1,10 @@
+/*
+* DB: Store
+* Table: products
+* Question: Show NULL when the product is not on special (0)
+*/
+
+SELECT 
+    *,
+    NULLIF(public.products.special,0)
+FROM public.products
