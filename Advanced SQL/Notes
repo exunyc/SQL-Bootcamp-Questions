@@ -83,3 +83,16 @@ Conditionals
         ) AS "returns",
         SUM(o.netamount) AS "normal total"
     FROM orders as o
+
+NULLIF
+Return null if a condition is met
+-- Example: If value 1 equals value 2, return null
+    NULLIF(val_1, val_2)
+
+________________________________________________________________________________________________________________________________________________________________________________
+
+VIEWS
+Store and query previously run queries 
+2 Types of Views: Materialized & Non-Materialized
+Non-Materialized - Query gets re-run each time view is called on (storing reference)
+Materialized - Stores data physically and periodically updates when tables change 
