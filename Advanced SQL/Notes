@@ -59,3 +59,27 @@ SELECT
     row_number() OVER(
         PARITION by category ORDER BY price) as "Position in Category by Price"
 FROM products
+
+________________________________________________________________________________________________________________________________________________________________________________
+
+CASE
+Conditionals
+-- Example:
+    SELECT a,
+        CASE WHEN a = 1 THEN 'one'
+             WHEN a = 2 THEN 'two'
+             ELSE 'other
+        END
+    FROM test;
+* Each return must be a single output 
+-- Example: In an aggregate function
+    SELECT
+        SUM(
+            CASE
+                WHEN o.netamount < 100
+                then -100
+                else o.netamount 
+            END
+        ) AS "returns",
+        SUM(o.netamount) AS "normal total"
+    FROM orders as o
