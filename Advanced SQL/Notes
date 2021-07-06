@@ -9,3 +9,53 @@ To get in-depth information by group; almost exclusively used with AGGREGATE fun
 
 HAVING
 Filters on GROUP
+
+________________________________________________________________________________________________________________________________________________________________________________
+
+WINDOW 
+Apply functions to a subset or window of data
+    window_function(arg1, arg2,...) OVER (
+        [PARTITION BY partition_expression]
+        [ORDER BY sort_expression [ASC|DESC] [NULLS {FIRST|LAST}]
+*Needs 'OVER' keyword to apply function over window of data requested*
+-- Example: Display the max salary next to each row
+    SELECT
+        *,
+        MAX(salary) OVER()
+    FROM salaries;
+    
+PARTITION BY
+Divide rows into groups to apply the function against
+-- Example: Display average salary by department name next to individual salaries
+    SELECT
+        *,
+        AVG(salary) OVER(
+            PARTITION BY d.dept_name
+        )
+    FROM salaries
+    JOIN dept_emp as de USING (emp_no)
+    JOIN departments AS d USING (dept_no)
+    
+FIRST_VALUE
+Return a value evaluated aginst the first row within its partition 
+-- Example: Price of item compared to the lowest price of item in its category
+SELECT
+    prod_id,
+    price,
+    category,
+    first_value(price) OVER(
+        PARTITION by category ORDER BY price RANGE between UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+    )
+FROM products 
+* May be better to use min(price) in this situation
+
+ROW_NUMBER
+Number the current row within the partition starting from 1 regardless of framing
+-- Example: Where product is positioned in the category by price
+SELECT
+    prod_id,
+    price,
+    category,
+    row_number() OVER(
+        PARITION by category ORDER BY price) as "Position in Category by Price"
+FROM products
