@@ -104,7 +104,7 @@ Materialized - Stores data physically and periodically updates when tables chang
     ALTER VIEW <view name> RENAME TO <view name>;
 -- Syntax: Delete view
     DROP VIEW [IF EXISTS] <view name>
-** Views are the output of the query ran
+* Views are the output of the query ran
 --Example: Current salary
     CREATE VIEW last_salary_change AS
     SELECT e.emp_no,
@@ -122,3 +122,33 @@ Materialized - Stores data physically and periodically updates when tables chang
     JOIN last_salary_change AS l USING (emp_no)
     WHERE from_date = l.max
     ORDER BY emp_no;
+
+________________________________________________________________________________________________________________________________________________________________________________
+
+INDEX
+An index is a construct to improve querying performance
+Single-Column, Multi-Column, Unique, Partial, Implicit 
+-- Syntax: Create index
+    CREATE UNIQUE INDEX <name>
+    ON <table> (column1, column2, ...);
+-- Syntax: Delete index
+    DROP INDEX <name>;
+* Index foreign keys, index primary & unique keys, index on columns that end up in the ORDER BY/WHERE clause often
+
+SINGLE-COLUMN INDEX
+Most frequently used column in a query 
+
+MULTI-COLUMN INDEX
+Most frequently used columns in query
+
+UNIQUE INDEX
+For speed and integrity
+
+PARTIAL INDEX
+Index over a subset of a table
+-- Syntax:
+    CREATE INDEX <name>
+    ON <table> (<expression>);
+    
+IMPLICIT
+Automatically created by the database: primary and unique keys
