@@ -96,3 +96,29 @@ Store and query previously run queries
 2 Types of Views: Materialized & Non-Materialized
 Non-Materialized - Query gets re-run each time view is called on (storing reference)
 Materialized - Stores data physically and periodically updates when tables change 
+-- Syntax: Create view
+    CREATE VIEW view_name AS query;
+-- Syntax: Update view
+    CREATE OR REPLACE <view name> AS query
+-- Syntax: Rename view
+    ALTER VIEW <view name> RENAME TO <view name>;
+-- Syntax: Delete view
+    DROP VIEW [IF EXISTS] <view name>
+** Views are the output of the query ran
+--Example: Current salary
+    CREATE VIEW last_salary_change AS
+    SELECT e.emp_no,
+           MAX(s.from_date)
+    FROM salaries as s
+    
+    JOIN employees as e USING(emp_no)
+    JOIN dept_emp as de USING(emp_no)
+    JOIN departments as d USING(dept_no)
+    
+    GROUP BY e.emp_no
+    ORDER BY e.emp_no;
+    
+    SELECT * FROM salaries
+    JOIN last_salary_change AS l USING (emp_no)
+    WHERE from_date = l.max
+    ORDER BY emp_no;
