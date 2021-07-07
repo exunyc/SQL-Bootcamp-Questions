@@ -1,1 +1,37 @@
+Default Database
+Postgres - INITDB
+-- Command: First time initialize postgres > connect to Postgres database to setup first database
+  ~ psql -U <user> <database>
+-- Command: Show current connection
+  \conninfo
+  
+TEMPLATE0 (Backup)
+Template that is used to create TEMPLATE1 - NEVER CHANGE IT!
 
+TEMPLATE1 (Default)
+Template used to create new databases. Any changes made to template will be automatically applied to new databases
+* No new databases can be created until connection to TEMPLATE1 is closed
+
+__________________________________________________________________________________________________________________________________________________________________________________
+
+CREATING A DATABSE
+-- Syntax:
+  CREATE DATABASE name
+    [[WITH] [OWNER [=] user_name]           // default is current user
+      [TEMPLATE [=] template]               // default is template01
+      [ENCODING [=] encoding]               // default is UTF8
+      [LC_COLLATE [=] lc_collate]  
+      [LC_TYPE [=] lc_type]
+      [TABLESPACE [=] tablespace]
+      [CONNECTION LIMIT [=] connlimit]]     // default is UTF8]
+      
+POSTGRES SCHEMAS
+Organize tables, views, indexes, etc...
+
+-- Command: Show all schemas
+  \dn
+  
+Schemas
+Allow multiple users to use one database without interfering with each other
+To organize database objects into logical groups to make them more manageable
+Third-party applications can be put into separate schemas so they do not collide with the names of other objects
