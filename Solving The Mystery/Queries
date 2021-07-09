@@ -1,0 +1,25 @@
+- Date of incident: 2020-06-23
+- Keiko Corp Latitude: -74.997 to -74.9968
+- Keiko Corp Longitude: 40.5 to 40.6
+
+SELECT 
+    DISTINCT v.id AS vehicle_id,
+    u.name AS owner_name, 
+    u.address,
+    v.status, 
+    v.current_location 
+FROM public.users AS U 
+JOIN public.vehicles as v ON v.owner_id = u.id
+JOIN public.rides AS r ON r.vehicle_id = v.id
+JOIN public.vehicle_location_histories AS vhi ON vhi.ride_id = r.id
+WHERE ((lat BETWEEN -74.997 AND -74.9968) 
+    AND (long BETWEEN 40.5 AND 40.6) 
+    AND (EXTRACT(YEAR FROM "timestamp") = 2020) AND (EXTRACT(MONTH FROM "timestamp") = 6) AND (EXTRACT(DAY FROM "timestamp") = 23))  
+   
+   
+\\ RIDERS
+
+SELECT DISTINCT r.vehicle_id, u.name AS "rider name", u.address 
+FROM public.suspected_rides AS sr 
+JOIN public.rides AS r ON r.id = sr.ride_id 
+JOIN public.users AS u ON u.id = r.rider_id
